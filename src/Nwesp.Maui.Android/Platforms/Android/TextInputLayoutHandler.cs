@@ -69,7 +69,7 @@ namespace Nwesp.Maui.Android
     {
         protected override MauiTextInputLayout CreatePlatformView()
         {
-            var textInputLayout =  new MauiTextInputLayout(Context);
+            var textInputLayout =  new MauiTextInputLayout(MauiContext);
             return textInputLayout;
         }
 
@@ -128,25 +128,6 @@ namespace Nwesp.Maui.Android
                 PlatformEntry.TextChanged += PlatformEntry_TextChanged;
                 PlatformEntry.FocusChange += PlatformEntry_FocusChange;
             }
-
-            PlatformView.SetEndIconOnClickListener(new OnClickListener(() =>
-            {
-                if (PlatformView.CustomEndIconMode == EndIconMode.Password)
-                {
-                    if (PlatformView.IsPassword)
-                    {
-                        PlatformView.SetToggleOnPasswordIcon(MauiContext);
-                        PlatformEntry?.TogglePasswordOff();
-                    }
-                    else
-                    {
-                        PlatformView.SetToggleOffPasswordIcon(MauiContext);
-                        PlatformEntry?.TogglePasswordOn();
-                    }
-                    PlatformEntry?.SetSelection(PlatformEntry.Text?.Length ?? 0);
-                }
-                VirtualView?.EndIconClicked();
-            }));
 
             
             PlatformView.SetErrorIconOnClickListener(new OnClickListener(() =>
@@ -260,7 +241,7 @@ namespace Nwesp.Maui.Android
 
         public static void MapEndIconMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            handler.PlatformView?.UpdateEndIconMode(entry, handler.MauiContext);
+            handler.PlatformView?.UpdateEndIconMode(entry);
         }
         
         public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
@@ -361,17 +342,12 @@ namespace Nwesp.Maui.Android
 
         public static void MapStartIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
-            if(entry.StartIconClickedCommand is not null)
-            {
-                handler.PlatformView.SetStartIconOnClickListener(new OnClickListener(() =>
-                {
-                    entry.StartIconClickedCommand.Execute(null);
-                }));
-            }
-            else
-            {
-                handler.PlatformView.SetStartIconOnClickListener(null);
-            }
+            handler.PlatformView?.UpdateStartIconClickedCommand(entry);
+        }
+
+        public static void MapEndIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        {
+            handler.PlatformView?.UpdateEndIconClickedCommand(entry);
         }
     }
 

@@ -42,9 +42,10 @@ namespace Nwesp.Maui.Android.Platforms.Android
             // Set the EditText's width when the layout changes.
             EditText?.SetMinimumWidth(this.Width);
         }
-
-        public MauiTextInputLayout(Context context) : base(context)
+        public IMauiContext MauiContext { get; }
+        public MauiTextInputLayout(IMauiContext mauiContext) : base(mauiContext.Context!)
         {
+            MauiContext = mauiContext;
             var density = DisplayHelper.GetDensity(Context);
             
             // Hack. For some reason when the box background mode is set to filled, the hint is positioned too high when focused and/or has text

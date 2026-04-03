@@ -7,28 +7,37 @@
     xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
     Title="StartIconPage">
     <VerticalStackLayout Padding="8" Spacing="8">
-        <input:TextInputLayout
-            BoxBackgroundMode="{Binding BoxBackgroundMode}"
-            Hint="Select End Icon Visibility mode"
-            SupportingText="Select a mode to apply the visibility to the entries below">
-            <input:MaterialPicker ItemsSource="{Binding IconVisibilityModes}" SelectedItem="{Binding SelectedIconVisibilityMode}" />
-        </input:TextInputLayout>
-        <input:TextInputLayout
-            BoxBackgroundMode="{Binding BoxBackgroundMode}"
 
-            Hint="Demo">
+        <input:TextInputLayout BoxBackgroundMode="{Binding BoxBackgroundMode}" Hint="Demo">
             <input:MaterialEntry />
         </input:TextInputLayout>
-        <input:TextInputLayout StartIcon="address1.svg"
+        <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
-
-            Hint="Demo">
+            Hint="Username"
+            StartIcon="user3.svg">
             <input:MaterialEntry />
         </input:TextInputLayout>
-        <input:TextInputLayout StartIcon="address1.svg" StartIconClickedCommand="{Binding StartIconClickedCommand}"
+        <input:TextInputLayout
             BoxBackgroundMode="{Binding BoxBackgroundMode}"
-       
-            Hint="Demo">
+            EndIconMode="Password"
+            Hint="Password"
+            StartIcon="lock.svg">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+            Hint="Address"
+            StartIcon="address1.svg"
+            StartIconColor="CornflowerBlue">
+            <input:MaterialEntry />
+        </input:TextInputLayout>
+        <input:TextInputLayout
+            BoxBackgroundMode="{Binding BoxBackgroundMode}"
+            Hint="Phone"
+            StartIcon="phone1.svg"
+            StartIconClickedCommand="{Binding StartIconClickedCommand}"
+            StartIconColor="Green"
+            SupportingText="Custom start icon click command.">
             <input:MaterialEntry />
         </input:TextInputLayout>
     </VerticalStackLayout>

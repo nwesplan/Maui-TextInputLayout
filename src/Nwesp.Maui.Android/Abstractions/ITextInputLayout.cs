@@ -29,8 +29,8 @@ namespace Nwesp.Maui.Android.Abstractions
         BoxBackgroundMode BoxBackgroundMode { get; set; }
         IconVisibilityMode EndIconVisibilityMode { get; set; }
         EndIconMode EndIconMode { get; set; }
-        void EndIconClicked();
         void ErrorIconClicked();
+        ICommand EndIconClickedCommand { get; set; }
         ImageSource EndIcon { get; set; }
         Color EndIconColor { get; set; }
         Color DisabledEndIconColor { get; set; }

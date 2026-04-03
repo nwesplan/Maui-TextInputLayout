@@ -7,10 +7,10 @@ public partial class StartIconPage : BaseDemoPage
 	public StartIconPage()
 	{
 		InitializeComponent();
-		StartIconClickedCommand = new Command(() =>
+		StartIconClickedCommand = new Command(async () =>
 		{
-
-		});
+            await DisplayAlertAsync("Command", "Custom Click Command", "Ok");
+        });
 		BindingContext = this;
 	}
 

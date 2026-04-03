@@ -34,7 +34,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
     {
         private static ConcurrentDictionary<string, Drawable> DrawableDictionary = new ();
 
-        public static async void UpdateEndIconMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView, IMauiContext? mauiContext)
+        public static async void UpdateEndIconMode(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.CustomEndIconMode = virtualView.EndIconMode;
 
@@ -42,16 +42,16 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             {
                 if(entry.IsPassword)
                 {
-                    platformView.SetToggleOffPasswordIcon(mauiContext);
+                    platformView.SetToggleOffPasswordIcon();
                 }
                 else
                 {
-                    platformView.SetToggleOnPasswordIcon(mauiContext);
+                    platformView.SetToggleOnPasswordIcon();
                 }
             }
             else if(platformView.CustomEndIconMode == EndIconMode.ClearText)
             {
-                await platformView.MapCustomEndIcon(virtualView, mauiContext);
+                await platformView.MapCustomEndIcon(virtualView, platformView.MauiContext);
             }
         }
 
@@ -70,16 +70,70 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             }
         }
 
-        public static async void SetToggleOffPasswordIcon(this MauiTextInputLayout platformView, IMauiContext? mauiContext)
+        public static void UpdateStartIconClickedCommand(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
-            platformView.IsPassword = true;
-            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_off2.svg"), mauiContext);
+            if (virtualView.StartIconClickedCommand is not null)
+            {
+                platformView.SetStartIconOnClickListener(new OnClickListener(() =>
+                {
+                    virtualView.StartIconClickedCommand.Execute(null);
+                }));
+            }
+            else
+            {
+                platformView.SetStartIconOnClickListener(null);
+            }
         }
 
-        public static async void SetToggleOnPasswordIcon(this MauiTextInputLayout platformView, IMauiContext? mauiContext)
+        public static void UpdateEndIconClickedCommand(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
+        {
+            if (virtualView.EndIconClickedCommand is not null)
+            {
+                platformView.SetEndIconOnClickListener(new OnClickListener(() =>
+                {
+                    virtualView.EndIconClickedCommand.Execute(null);
+                }));
+            }
+            else
+            {
+                platformView.SetEndIconOnClickListener(null);
+            }
+        }
+
+        public static void DefaultEndIconClickedCommand(this MauiTextInputLayout platformView)
+        {
+            if (platformView.CustomEndIconMode == EndIconMode.Password)
+            {
+                var cursorPosition = platformView.EditText?.GetCursorPosition() ?? 0;
+                if (platformView.IsPassword)
+                {
+                    platformView.SetToggleOnPasswordIcon();
+                    platformView.EditText?.TogglePasswordOff();
+                }
+                else
+                {
+                    platformView.SetToggleOffPasswordIcon();
+                    platformView.EditText?.TogglePasswordOn();
+                }
+                platformView.EditText?.SetSelection(cursorPosition, cursorPosition);
+            }
+            else if (platformView.CustomEndIconMode == EndIconMode.ClearText)
+            {
+                platformView.EditText?.Text = string.Empty;
+            }
+        }
+
+
+        public static async void SetToggleOffPasswordIcon(this MauiTextInputLayout platformView)
+        {
+            platformView.IsPassword = true;
+            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_off2.svg"), platformView.MauiContext);
+        }
+
+        public static async void SetToggleOnPasswordIcon(this MauiTextInputLayout platformView)
         {
             platformView.IsPassword = false;
-            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_on2.svg"), mauiContext);
+            platformView.EndIconDrawable = await MapCustomIcon(ImageSource.FromFile("eye_on2.svg"), platformView.MauiContext);
         }
 
         public static void ShowEndIcon(this MauiTextInputLayout platformView)

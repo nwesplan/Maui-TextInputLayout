@@ -14,6 +14,10 @@ using Microsoft.Maui.Controls.Shapes;
 using System.Windows.Input;
 using Nwesp.Maui.Android.Abstractions;
 using Nwesp.Maui.Android.Models;
+using Nwesp.Maui.Android.Platforms.Android.Listeners;
+using Nwesp.Maui.Android.Platforms.Android;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
+using Android.Widget;
 
 
 
@@ -98,6 +102,19 @@ namespace Nwesp.Maui.Android.Controls
             DisabledSupportingTextColorOpacityProperty = BindableProperty.Create(nameof(DisabledSupportingTextColorOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledSupportingTextOpacity());
 
             StartIconClickedCommandProperty = BindableProperty.Create(nameof(StartIconClickedCommand), typeof(ICommand), typeof(TextInputLayout));
+            EndIconClickedCommandProperty = BindableProperty.Create(nameof(EndIconClickedCommand), typeof(ICommand), typeof(TextInputLayout), defaultValueCreator: EndIconClickedDefaultValueCreator);
+        }
+
+        private static object EndIconClickedDefaultValueCreator(BindableObject bindable)
+        {
+            if (bindable is TextInputLayout control && control.Handler is TextInputLayoutHandler handler)
+            {
+                return new Command(() =>
+                {
+                    handler?.PlatformView?.DefaultEndIconClickedCommand();
+                });
+            }
+            return null!;
         }
 
         private static void BoxBackgroundModePropertyChanged(BindableObject bindable, object oldValue, object newValue)

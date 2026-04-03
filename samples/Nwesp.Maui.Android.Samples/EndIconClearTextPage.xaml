@@ -11,7 +11,7 @@
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 Hint="Select End Icon Visibility mode"
-                SupportingText="Select a mode to apply the visibility to the two entries below">
+                SupportingText="Select a mode to apply the visibility to the three entries below">
                 <input:MaterialPicker ItemsSource="{Binding IconVisibilityModes}" SelectedItem="{Binding SelectedIconVisibilityMode}" />
             </input:TextInputLayout>
             <input:TextInputLayout
@@ -35,8 +35,18 @@
                 SupportingText="Custom icon. Custom click command.">
                 <input:MaterialEntry />
             </input:TextInputLayout>
+            <input:TextInputLayout
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIcon="search_black.svg"
+                EndIconClickedCommand="{x:Null}"
+                EndIconMode="{Binding SelectedEndIconMode}"
+                EndIconVisibilityMode="{Binding SelectedIconVisibilityMode}"
+                Hint="Label text"
+                SupportingText="Custom icon. No click command.">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
 
-            <Label Margin="0,20,0,0" Text="The following entries have specific visibiliy set" />
+            <Label Margin="0,40,0,0" Text="The following entries have specific visibiliy set" />
             <Label Text="End Icon Visibility: Never" />
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
