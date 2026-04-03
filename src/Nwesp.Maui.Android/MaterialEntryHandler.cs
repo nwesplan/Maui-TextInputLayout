@@ -6,6 +6,7 @@ using Android.Widget;
 using AndroidX.AppCompat.View;
 using AndroidX.AppCompat.Widget;
 using Java.Lang;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
@@ -59,6 +60,8 @@ namespace Nwesp.Maui.Android
                 // Hack: Fix for password mask spacing upon initial load.
                 PlatformView.Post(() =>
                 {
+                    var logger = MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
+                    logger.LogWarning("Hiding icon");
                     PlatformView?.TogglePasswordOn();
                 });
             } 

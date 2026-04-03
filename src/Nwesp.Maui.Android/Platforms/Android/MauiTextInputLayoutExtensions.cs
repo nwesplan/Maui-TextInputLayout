@@ -84,11 +84,11 @@ namespace Nwesp.Maui.Android.Platforms.Android
             }
             //float textSize = (float)(virtualView.MaterialEntry?.FontSize ?? 14f);
             //platformView.SuffixTextView.SetTextSize(AComplexUnitType.Dip, textSize);
-            platformView.Post(() =>
-            {
+            //platformView.Post(() =>
+            //{
                 platformView.SuffixText = virtualView.Suffix;
                 platformView.InvalidateMeasure(virtualView);
-            });
+            //});
         }
 
         public static void UpdateSuffixTextColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)

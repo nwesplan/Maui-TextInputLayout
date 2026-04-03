@@ -7,6 +7,7 @@ using Android.Widget;
 using AndroidX.AppCompat.Widget;
 using AndroidX.Core.Graphics.Drawable;
 using Google.Android.Material.TextField;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
@@ -149,26 +150,21 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
 
         public static void ShowEndIcon(this MauiTextInputLayout platformView)
         {
-            if(platformView.EndIconVisible)
-            {
-                return;
-            }
             // Removing the Post causes the layout to increase in height, shifting elements on the screen when the icon becomes visible (i.e. When focused)
             platformView.Post(() =>
             {
+                var logger = platformView.MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
+                logger.LogWarning("Showing icon");
                 platformView.EndIconVisible = true;
             });
         }
 
         public static void HideEndIcon(this MauiTextInputLayout platformView)
         {
-            if(!platformView.EndIconVisible)
-            {
-                return;
-            }
-
             platformView.Post(() =>
             {
+                var logger = platformView.MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
+                logger.LogWarning("Hiding icon");
                 platformView.EndIconVisible = false;
             });
         }

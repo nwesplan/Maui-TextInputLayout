@@ -72,7 +72,7 @@
                 HorizontalOptions="Fill"
                 IsHintAlwaysExpanded="True"
                 StartIcon="user1.svg">
-                <input:MaterialEntry HorizontalOptions="Fill" Placeholder="Placeholder test" />
+                <input:MaterialEntry HorizontalOptions="Fill" Placeholder="Placeholder test" Margin="40" />
             </input:TextInputLayout>
 
             <input:TextInputLayout

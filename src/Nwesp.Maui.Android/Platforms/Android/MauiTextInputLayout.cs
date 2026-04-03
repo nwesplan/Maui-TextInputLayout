@@ -59,9 +59,10 @@ namespace Nwesp.Maui.Android.Platforms.Android
                 return;
             }
 
-            EndIconMode = EndIconCustom;
-            EndIconVisible = true;
-            return;
+            //EndIconMode = EndIconCustom;
+            //EndIconVisible = true;
+            //return;
+
             // EndIconBug
             // Leaving the following code as a reference. It seems the only issue now is that the End icon appears then disappears immediatley upon load of the main page only.
 

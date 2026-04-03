@@ -1,14 +1,15 @@
 ﻿using Android.Content.Res;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.Controls.Compatibility.Platform.Android;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Hosting;
 using Microsoft.Maui.Platform;
+using Nwesp.Maui.Android.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Nwesp.Maui.Android.Controls;
 namespace Nwesp.Maui.Android.Hosting
 {
     public static class MauiAppBuilderExtensions
@@ -21,6 +22,14 @@ namespace Nwesp.Maui.Android.Hosting
                 config.AddHandler<MaterialEntry, MaterialEntryHandler>();
                 config.AddHandler<MaterialPicker, MaterialPickerHandler>();
             });
+         
+
+            #if DEBUG
+                builder.Logging.SetMinimumLevel(LogLevel.Debug);
+            #else
+                builder.Logging.SetMinimumLevel(LogLevel.Warning);
+            #endif
+
 
             return builder;
         }
