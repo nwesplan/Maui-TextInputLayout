@@ -29,6 +29,8 @@ namespace Nwesp.Maui.Android.Platforms.Android
         public bool IsPassword { get; set; }
         public ImageSource? ShowPasswordIcon { get; set; }
         public ImageSource? HidePasswordIcon { get; set; }
+        public TaskCompletionSource EndIconInitializedCompletionSource { get; set; } = new();
+        public IMauiContext MauiContext { get; }
         public bool HasTextAndFocus(bool hasFocus)
         {
             return hasFocus && !string.IsNullOrWhiteSpace(EditText?.Text);
@@ -44,7 +46,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             // Set the EditText's width when the layout changes.
             EditText?.SetMinimumWidth(this.Width);
         }
-        public IMauiContext MauiContext { get; }
+        
         public MauiTextInputLayout(IMauiContext? mauiContext) : base(mauiContext!.Context!)
         {
             MauiContext = mauiContext;
@@ -81,7 +83,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             EndIconVisible = true;
 
             // Queue on UI thread (2)
-            Post(() =>
+            Post(async () =>
             {
                 // Prevent the end icon from receiving focus (3)
                 endIcon.Focusable = false;
@@ -92,6 +94,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
 
                 // Make icon visible again with alpha (1)
                 endIcon.Alpha = 1f;
+                EndIconInitializedCompletionSource.TrySetResult();
             });
         }
     }

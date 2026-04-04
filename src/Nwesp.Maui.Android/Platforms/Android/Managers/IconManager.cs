@@ -163,25 +163,18 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
             platformView.EndIconDrawable = await MapCustomIcon(platformView.HidePasswordIcon, platformView.MauiContext);
         }
 
-        public static void ShowEndIcon(this MauiTextInputLayout platformView)
+        public static async void ShowEndIcon(this MauiTextInputLayout platformView)
         {
+            await platformView.EndIconInitializedCompletionSource.Task;
             // Removing the Post causes the layout to increase in height, shifting elements on the screen when the icon becomes visible (i.e. When focused)
-            platformView.Post(() =>
-            {
-                var logger = platformView.MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
-                logger.LogWarning("Showing icon");
-                platformView.EndIconVisible = true;
-            });
+ 
+            platformView.EndIconVisible = true;
         }
 
-        public static void HideEndIcon(this MauiTextInputLayout platformView)
+        public static async void HideEndIcon(this MauiTextInputLayout platformView)
         {
-            platformView.Post(() =>
-            {
-                var logger = platformView.MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
-                logger.LogWarning("Hiding icon");
-                platformView.EndIconVisible = false;
-            });
+            await platformView.EndIconInitializedCompletionSource.Task;
+            platformView.EndIconVisible = false;
         }
 
         public static void UpdateEndIconColor(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
