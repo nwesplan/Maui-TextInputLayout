@@ -35,7 +35,7 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
                 [
                     virtualView.DisabledHintColor.WithAlpha(virtualView.DisabledHintOpacity).ToPlatform(),
                     virtualView.FocusedHintColor.ToPlatform(),
-                    virtualView.DefaultHintColor.ToPlatform()
+                    virtualView.HintColor.ToPlatform()
                 ]
             );
         }

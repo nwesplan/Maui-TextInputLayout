@@ -32,7 +32,7 @@ namespace Nwesp.Maui.Android
         {
 
         }
-        public static void MapDefaultHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
         {
 
         }

@@ -97,28 +97,6 @@ namespace Nwesp.Maui.Android
             PlatformView.TextInputLayoutTextChanged(VirtualView, PlatformEntry?.Text);
         }
 
-        // Fix for Borders clipping when the control is rearranged on screen (toggling visibility. adding/removing views)
-        //private void ViewTreeObserver_GlobalLayout(object? sender, EventArgs e)
-        //{
-        //    if (VirtualView is null || PlatformView is null)
-        //    {
-        //        return;
-        //    }
-
-        //    var x = PlatformView.GetX();
-        //    var y = PlatformView.GetY();
-        //    if (x != PlatformView.PreviousX || y != PlatformView.PreviousY)
-        //    {
-        //        PlatformView.PreviousX = x;
-        //        PlatformView.PreviousY = y;
-
-        //        if (PlatformView.IsAttachedToWindow)
-        //        {
-        //            PlatformView.InvalidateMeasure(VirtualView);
-        //        }
-        //    }
-        //}
-
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
@@ -153,240 +131,219 @@ namespace Nwesp.Maui.Android
             PlatformView?.TextInputLayoutTextChanged(VirtualView, e.Text?.ToString());
         }
 
-        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateBackgroundColor(entry);
+            handler.PlatformView?.UpdateBackgroundColor(view);
         }
 
-        public static void MapOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateOutlineColor(entry);
+            handler.PlatformView?.UpdateOutlineColor(view);
         }
 
-        public static void MapFocusedOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapFocusedOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateOutlineColor(entry);
+            handler.PlatformView?.UpdateOutlineColor(view);
         }
 
-        public static void MapDisabledOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapDisabledOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateOutlineColor(entry);
+            handler.PlatformView?.UpdateOutlineColor(view);
         }
 
-        public static void MapDisabledOutlineOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapDisabledOutlineOpacity(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateOutlineColor(entry);
+            handler.PlatformView?.UpdateOutlineColor(view);
         }
 
-        public static void MapBoxStrokeCornerRadius(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxStrokeCornerRadius(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateBoxCornerRadius(entry);
+            handler.PlatformView?.UpdateBoxCornerRadius(view);
         }
 
-        public static void MapBoxStrokeWidth(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxStrokeWidth(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateBoxStrokeWidth(entry);
+            handler.PlatformView?.UpdateBoxStrokeWidth(view);
         }
 
-        public static void MapBoxStrokeFocusedWidth(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxStrokeFocusedWidth(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateBoxStrokeFocusedWidth(entry);
+            handler.PlatformView?.UpdateBoxStrokeFocusedWidth(view);
         }
 
-        public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapHint(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.MapHint(entry);
+            handler.PlatformView?.MapHint(view);
         }
 
-        public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapHintColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateHintColors(entry);
+            handler.PlatformView?.UpdateHintColors(view);
         }
 
-        public static void MapHintOpacity(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapHintOpacity(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateHintColors(entry);
+            handler.PlatformView?.UpdateHintColors(view);
         }
 
-        public static void MapIsHintAlwaysExpanded(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapIsHintAlwaysExpanded(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler?.PlatformView?.MapIsHintAlwaysExpanded(entry);
+            handler?.PlatformView?.MapIsHintAlwaysExpanded(view);
         }
 
-        public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapBoxBackgroundMode(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateBoxBackgroundMode(entry);
+            handler.PlatformView?.UpdateBoxBackgroundMode(view);
         }
 
-        public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIcon(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateEndIcon(entry);
+            handler.PlatformView?.UpdateEndIcon(view);
         }
 
-        public static void MapErrorIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorIcon(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorIcon(entry);
+            handler.PlatformView?.UpdateErrorIcon(view);
         }
 
-        public static void MapErrorTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorTextColor(entry);
+            handler.PlatformView?.UpdateErrorTextColor(view);
         }
 
-        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateEndIconColor(entry);
+            handler.PlatformView?.UpdateEndIconColor(view);
         }
 
-        public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconVisibilityMode(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateEndIconVisibilityMode(entry);
+            handler.PlatformView?.UpdateEndIconVisibilityMode(view);
         }
 
-        public static void MapEndIconMode(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconMode(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateEndIconMode(entry);
+            handler.PlatformView?.UpdateEndIconMode(view);
         }
         
-        public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapStartIcon(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateStartIcon(entry);
+            handler.PlatformView?.UpdateStartIcon(view);
         }
 
-        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapStartIconColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateStartIconColor(entry);
+            handler.PlatformView?.UpdateStartIconColor(view);
         }
 
-        public static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapPrefix(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdatePrefixText(entry);
+            handler.PlatformView?.UpdatePrefixText(view);
         }
 
-        public static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapPrefixTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdatePrefixTextColor(entry);
+            handler.PlatformView?.UpdatePrefixTextColor(view);
         }
 
-        public static void MapSuffix(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapSuffix(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateSuffixText(entry);
+            handler.PlatformView?.UpdateSuffixText(view);
         }
 
-        public static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapSuffixTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateSuffixTextColor(entry);
+            handler.PlatformView?.UpdateSuffixTextColor(view);
         }
 
-        public static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapSupportingText(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateSupportingText(entry);
+            handler.PlatformView?.UpdateSupportingText(view);
         }
 
-        public static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorText(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorText(entry);
+            handler.PlatformView?.UpdateErrorText(view);
         }
 
-        public static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapCounterEnabled(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateCounterEnabled(entry);
+            handler.PlatformView?.UpdateCounterEnabled(view);
         }
 
-        public static void MapCounterMaxLength(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapCounterMaxLength(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateCounterMaxLength(entry);
+            handler.PlatformView?.UpdateCounterMaxLength(view);
         }
 
-        public static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapPadding(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdatePadding(entry);
+            handler.PlatformView?.UpdatePadding(view);
         }
 
-        public static void MapIsErrorEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapIsErrorEnabled(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateIsErrorEnabled(entry);
+            handler.PlatformView?.UpdateIsErrorEnabled(view);
         }
 
-        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapCursorColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateCursorColor(entry);
+            handler.PlatformView?.UpdateCursorColor(view);
         }
 
-        public static void MapErrorCursorColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorCursorColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorCursorColor(entry);
+            handler.PlatformView?.UpdateErrorCursorColor(view);
         }
 
-        public static void MapErrorOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorOutlineColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorOutlineColor(entry);
+            handler.PlatformView?.UpdateErrorOutlineColor(view);
         }
 
-        public static void MapCounterTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapCounterTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateCounterTextColor(entry);
+            handler.PlatformView?.UpdateCounterTextColor(view);
         }
 
-        public static void MapCounterOverflowTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapCounterOverflowTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateCounterOverflowTextColor(entry);
+            handler.PlatformView?.UpdateCounterOverflowTextColor(view);
         }
 
-        public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapSupportingTextColor(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateSupportingTextColor(entry);
+            handler.PlatformView?.UpdateSupportingTextColor(view);
         }
 
-        public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapIsEnabled(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            ViewHandler.MapIsEnabled(handler, entry);
-            handler.PlatformView?.UpdateStatefulColors(entry, handler.PlatformView.HasFocus);
+            ViewHandler.MapIsEnabled(handler, view);
+            handler.PlatformView?.UpdateStatefulColors(view, handler.PlatformView.HasFocus);
         }
 
-        public static void MapStartIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapStartIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateStartIconClickedCommand(entry);
+            handler.PlatformView?.UpdateStartIconClickedCommand(view);
         }
 
-        public static void MapEndIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapEndIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateEndIconClickedCommand(entry);
+            handler.PlatformView?.UpdateEndIconClickedCommand(view);
         }
-        public static void MapErrorIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapErrorIconClickedCommand(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateErrorIconClickedCommand(entry);
+            handler.PlatformView?.UpdateErrorIconClickedCommand(view);
         }
         
-        public static void MapShowPasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapShowPasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateShowPasswordIcon(entry);
+            handler.PlatformView?.UpdateShowPasswordIcon(view);
         }
 
-        public static void MapHidePasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout entry)
+        public static void MapHidePasswordIcon(ITextInputLayoutHandler handler, ITextInputLayout view)
         {
-            handler.PlatformView?.UpdateHidePasswordIcon(entry);
-        }
-    }
-
-    public class MaterialPickerHandler : PickerHandler
-    {
-        private BoxBackgroundMode _boxBackgroundMode;
-        protected override MauiPicker CreatePlatformView()
-        {
-            var picker = ContextThemeHelper.BuildContextThemeWrapper(Context, _boxBackgroundMode, (t) => new MauiPicker(t));
-            // Don't allow free form text
-            picker.Focusable = false;
-            picker.FocusableInTouchMode = false;
-            picker.InputType = InputTypes.Null;
-            picker.ShowSoftInputOnFocus = false;
-            return picker;
-        }
-
-        public override void SetVirtualView(IView view)
-        {
-            _boxBackgroundMode = OutlineManager.ParseBoxBackgroundMode(view);
-            base.SetVirtualView(view);
+            handler.PlatformView?.UpdateHidePasswordIcon(view);
         }
     }
 }

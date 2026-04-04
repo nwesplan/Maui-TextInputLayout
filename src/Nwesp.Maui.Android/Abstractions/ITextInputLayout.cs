@@ -20,7 +20,7 @@ namespace Nwesp.Maui.Android.Abstractions
         Color DisabledOutlineColor { get; set; }
         float DisabledOutlineOpacity { get; set; }
         string Hint { get; set; }
-        Color DefaultHintColor { get; set; }
+        Color HintColor { get; set; }
         Color FocusedHintColor { get; set; }
         Color DisabledHintColor { get; set; }
         float DisabledHintOpacity { get; set; }

@@ -40,7 +40,7 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.FocusedOutlineColor)] = MapFocusedOutlineColor,
             [nameof(ITextInputLayout.DisabledOutlineColor)] = MapDisabledOutlineColor,
             [nameof(ITextInputLayout.Hint)] = MapHint,
-            [nameof(ITextInputLayout.DefaultHintColor)] = MapHintColor,
+            [nameof(ITextInputLayout.HintColor)] = MapHintColor,
             [nameof(ITextInputLayout.FocusedHintColor)] = MapHintColor,
             [nameof(ITextInputLayout.DisabledHintColor)] = MapHintColor,
             [nameof(ITextInputLayout.DisabledHintOpacity)] = MapHintOpacity,

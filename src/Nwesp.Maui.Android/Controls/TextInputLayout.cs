@@ -40,7 +40,7 @@ namespace Nwesp.Maui.Android.Controls
             DisabledOutlineOpacityProperty = BindableProperty.Create(nameof(DisabledOutlineOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledOutlineOpacity());
 
             HintProperty = BindableProperty.Create(nameof(Hint), typeof(string), typeof(TextInputLayout));
-            DefaultHintColorProperty = BindableProperty.Create(nameof(DefaultHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetLabelTextColor());
+            HintColorProperty = BindableProperty.Create(nameof(HintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetLabelTextColor());
             FocusedHintColorProperty = BindableProperty.Create(nameof(FocusedHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetFocusedLabelTextColor());
             DisabledHintColorProperty = BindableProperty.Create(nameof(DisabledHintColor), typeof(Color), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextColor());
             DisabledHintOpacityProperty = BindableProperty.Create(nameof(DisabledHintOpacity), typeof(float), typeof(TextInputLayout), defaultValue: ThemeHelper.GetDisabledLabelTextOpacity());
@@ -156,7 +156,7 @@ namespace Nwesp.Maui.Android.Controls
         public static readonly BindableProperty DisabledBackgroundColorOpacityProperty;
 
         public static readonly BindableProperty HintProperty;
-        public static readonly BindableProperty DefaultHintColorProperty;
+        public static readonly BindableProperty HintColorProperty;
         public static readonly BindableProperty FocusedHintColorProperty;
         public static readonly BindableProperty DisabledHintColorProperty;
         public static readonly BindableProperty DisabledHintOpacityProperty;
@@ -292,10 +292,10 @@ namespace Nwesp.Maui.Android.Controls
             set => SetValue(HintProperty, value);
         }
 
-        public Color DefaultHintColor
+        public Color HintColor
         {
-            get => (Color)GetValue(DefaultHintColorProperty);
-            set => SetValue(DefaultHintColorProperty, value);
+            get => (Color)GetValue(HintColorProperty);
+            set => SetValue(HintColorProperty, value);
         }
 
         public Color FocusedHintColor
