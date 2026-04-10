@@ -33,7 +33,7 @@ namespace Nwesp.Maui.Android
             [nameof(IMaterialEntry.DisabledTextColorOpacity)] = MapTextColor,
         };
 
-        public static CommandMapper<MaterialEntry, MaterialEntryHandler> CommandMapper = new(ViewHandler.ViewCommandMapper)
+        public static new CommandMapper<MaterialEntry, MaterialEntryHandler> CommandMapper = new(EntryHandler.CommandMapper)
         {
 
         };
@@ -60,8 +60,8 @@ namespace Nwesp.Maui.Android
                 // Hack: Fix for password mask spacing upon initial load.
                 PlatformView.Post(() =>
                 {
-                    var logger = MauiContext.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
-                    logger.LogWarning("Toggling Password init");
+                    var logger = MauiContext?.Services.GetRequiredService<ILogger<TextInputLayoutHandler>>();
+                    logger?.LogWarning("Toggling Password init");
                     PlatformView?.TogglePasswordOn();
                 });
             } 

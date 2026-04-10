@@ -11,7 +11,9 @@ public partial class TestPage : BaseDemoPage
         {
             await DisplayAlertAsync("Error", "Error Message", "Ok");
         });
-        ButtonCommand = new Command(() => IsLayoutVisible = !IsLayoutVisible);
+        ButtonCommand = new Command(() => 
+            IsLayoutVisible = !IsLayoutVisible
+        );
         InitializeComponent();
         BindingContext = this;
 	}

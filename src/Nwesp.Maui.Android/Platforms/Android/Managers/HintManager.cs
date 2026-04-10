@@ -43,17 +43,13 @@ namespace Nwesp.Maui.Android.Platforms.Android.Managers
         public static void MapIsHintAlwaysExpanded(this MauiTextInputLayout platformView, ITextInputLayout virtualView)
         {
             platformView.ExpandedHintEnabled = !virtualView.IsHintAlwaysExpanded;
-            return;
             // No longer needed?
             // Hack. Fix for Filled mode. When IsHintAlwaysExpanded is set to true and the edit text does not have text, focusing the entry adds height to the layout which causes other elements in the layout to shift.
-            platformView.Post(async () =>
-            {
-                platformView.ExpandedHintEnabled = false;
-                await Task.Yield();
-                
-
-
-            });
+        //    platformView.Post(async () =>
+        //    {
+        //        platformView.ExpandedHintEnabled = false;
+        //        await Task.Yield();
+        //    });
         }
     }
 }

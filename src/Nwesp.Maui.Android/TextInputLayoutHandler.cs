@@ -28,9 +28,6 @@ namespace Nwesp.Maui.Android
 {
     public partial class TextInputLayoutHandler : ITextInputLayoutHandler
     {
-        public IMaterialEntry VirtualEntry { get; set; }
-        public PlatformEntry PlatformEntry { get; set; }
-
         public static IPropertyMapper<ITextInputLayout, ITextInputLayoutHandler> PropertyMapper = new PropertyMapper<TextInputLayout, ITextInputLayoutHandler>(ViewHandler.ViewMapper)
         {
             [nameof(ITextInputLayout.BackgroundColor)] = MapBackgroundColor,
@@ -71,7 +68,6 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.SuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
             [nameof(ITextInputLayout.DisabledSuffixTextColor)] = MapSuffixTextColor,
-            [nameof(IPadding.Padding)] = MapPadding, // Padding isn't mapped by default.
             [nameof(ITextInputLayout.CursorColor)] = MapCursorColor,
             [nameof(ITextInputLayout.ErrorText)] = MapErrorText,
             [nameof(ITextInputLayout.IsErrorEnabled)] = MapIsErrorEnabled,
@@ -88,12 +84,13 @@ namespace Nwesp.Maui.Android
             [nameof(ITextInputLayout.DisabledSupportingTextColor)] = MapSupportingTextColor,
             [nameof(ITextInputLayout.FocusedSupportingTextColor)] = MapSupportingTextColor,
             [nameof(ITextInputLayout.DisabledSupportingTextColorOpacity)] = MapSupportingTextColor,
-            [nameof(IView.IsEnabled)] = MapIsEnabled,
             [nameof(ITextInputLayout.StartIconClickedCommand)] = MapStartIconClickedCommand,
             [nameof(ITextInputLayout.EndIconClickedCommand)] = MapEndIconClickedCommand,
-            
             [nameof(ITextInputLayout.ShowPasswordIcon)] = MapShowPasswordIcon,
             [nameof(ITextInputLayout.HidePasswordIcon)] = MapHidePasswordIcon,
+            [nameof(IPadding.Padding)] = MapPadding, // Padding isn't mapped by default.
+            [nameof(IView.IsEnabled)] = MapIsEnabled,
+            [nameof(IContentView.Content)] = MapContent,
         };
 
         public static CommandMapper<ITextInputLayout, ITextInputLayoutHandler> CommandMapper = new(ViewHandler.ViewCommandMapper);
@@ -102,6 +99,4 @@ namespace Nwesp.Maui.Android
             
         }
     }
-
-    
 }

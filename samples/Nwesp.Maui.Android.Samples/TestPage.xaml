@@ -29,7 +29,7 @@
                 <input:TextInputLayout
                     BoxBackgroundMode="{Binding BoxBackgroundMode}"
                     EndIconMode="ClearText"
-                    Hint="Test"
+                    Hint="Test" 
                     HorizontalOptions="Fill"
                     IsHintAlwaysExpanded="True">
                     <input:MaterialEntry HorizontalOptions="Fill" />
@@ -218,7 +218,7 @@
             <input:TextInputLayout
                 BoxBackgroundMode="{Binding BoxBackgroundMode}"
                 EndIconMode="ClearText"
-                Hint="Test"
+                Hint="Test" IsVisible="{Binding IsLayoutVisible}"
                 IsHintAlwaysExpanded="True">
                 <input:MaterialEntry />
             </input:TextInputLayout>

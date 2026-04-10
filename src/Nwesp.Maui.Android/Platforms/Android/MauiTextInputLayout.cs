@@ -44,7 +44,10 @@ namespace Nwesp.Maui.Android.Platforms.Android
             }
 
             // Set the EditText's width when the layout changes.
-            EditText?.SetMinimumWidth(this.Width);
+            if (EditText?.Width != Width)
+            {
+                EditText?.SetMinimumWidth(this.Width);
+            }
         }
         
         public MauiTextInputLayout(IMauiContext? mauiContext) : base(mauiContext!.Context!)
@@ -83,7 +86,7 @@ namespace Nwesp.Maui.Android.Platforms.Android
             EndIconVisible = true;
 
             // Queue on UI thread (2)
-            Post(async () =>
+            Post(() =>
             {
                 // Prevent the end icon from receiving focus (3)
                 endIcon.Focusable = false;

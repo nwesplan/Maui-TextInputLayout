@@ -1,66 +1,67 @@
-﻿using Android.Content.PM;
+﻿using Android.Animation;
+using Android.Content;
+using Android.Content.PM;
 using Android.Content.Res;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Graphics.Drawables.Shapes;
+using Android.Text;
+using Android.Util;
 using Android.Views;
+using Android.Views.InputMethods;
+using Android.Widget;
 using AndroidX.AppCompat.View;
-using Nwesp.Maui.Android.Platforms.Android;
+using AndroidX.AppCompat.Widget;
+using AndroidX.ConstraintLayout.Core.Widgets;
+using AndroidX.Core.Graphics.Drawable;
+using AndroidX.Core.Widget;
+using Google.Android.Material.Internal;
+using Google.Android.Material.TextField;
+using Java.Lang;
+using Javax.Crypto;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Compatibility.Platform.Android;
+using Microsoft.Maui.Controls.Platform;
 using Microsoft.Maui.Controls.PlatformConfiguration;
+using Microsoft.Maui.Graphics;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
+using Nwesp.Maui.Android.Abstractions;
+using Nwesp.Maui.Android.Controls;
+using Nwesp.Maui.Android.Models.Enums;
+using Nwesp.Maui.Android.Models.Exceptions;
+using Nwesp.Maui.Android.Platforms.Android;
+using Nwesp.Maui.Android.Platforms.Android.Listeners;
+using Nwesp.Maui.Android.Platforms.Android.Managers;
+using Nwesp.Maui.Android.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using static Android.Icu.Text.CaseMap;
 using static Android.Provider.MediaStore;
-using AColor = Android.Graphics.Color;
-using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
-using AResource = Android.Resource.Attribute;
-using AView = Android.Views.View;
-using Nwesp.Maui.Android.Platforms.Android.Managers;
-using Javax.Crypto;
-using Android.Graphics.Drawables;
-using Android.Graphics;
-using Nwesp.Maui.Android.Models.Enums;
-using Android.Content;
-using Android.Widget;
-using Google.Android.Material.TextField;
-using Microsoft.Maui.Controls.Compatibility.Platform.Android;
-using AndroidX.ConstraintLayout.Core.Widgets;
-using Android.Util;
-using AndroidX.AppCompat.Widget;
-using static Google.Android.Material.TextField.TextInputLayout;
-using Color = Microsoft.Maui.Graphics.Color;
-using Nwesp.Maui.Android.Models.Exceptions;
-using Java.Lang;
-using Microsoft.Maui.Controls.Platform;
-using JMode = Android.Text.JustificationMode;
-using Android.Text;
-using ATextAlignment = Android.Views.TextAlignment;
-using System.Resources;
-using ATheme = Android.Content.Res;
-using ARect = Android.Graphics.Rect;
-using AndroidX.Core.Widget;
-using AndroidX.Core.Graphics.Drawable;
-using Nwesp.Maui.Android.Utilities;
 using static Android.Views.View;
 using static Android.Views.ViewTreeObserver;
-using Layout = Microsoft.Maui.Controls.Layout;
-using Android.Views.InputMethods;
-using AViewGroup = Android.Views.ViewGroup;
+using static Google.Android.Material.TextField.TextInputLayout;
 using static Nwesp.Maui.Android.Platforms.Android.MauiTextInputLayout;
-using AViewStates = Android.Views.ViewStates;
-using Microsoft.Maui.Graphics;
-using Google.Android.Material.Internal;
-using Android.Graphics.Drawables.Shapes;
-using AShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
-using Android.Animation;
 using ABlendMode = Android.Graphics.BlendMode;
+using AColor = Android.Graphics.Color;
 using AProgressBar = Android.Widget.ProgressBar;
-using Nwesp.Maui.Android.Abstractions;
-using Nwesp.Maui.Android.Controls;
-using Nwesp.Maui.Android.Platforms.Android.Listeners;
+using ARect = Android.Graphics.Rect;
+using AResource = Android.Resource.Attribute;
+using AShapeDrawable = Android.Graphics.Drawables.ShapeDrawable;
+using ATextAlignment = Android.Views.TextAlignment;
 using ATextChangedEventArgs = Android.Text.TextChangedEventArgs;
+using ATheme = Android.Content.Res;
+using AView = Android.Views.View;
+using AViewGroup = Android.Views.ViewGroup;
+using AViewStates = Android.Views.ViewStates;
+using Color = Microsoft.Maui.Graphics.Color;
+using ContextThemeWrapper = AndroidX.AppCompat.View.ContextThemeWrapper;
+using JMode = Android.Text.JustificationMode;
+using Layout = Microsoft.Maui.Controls.Layout;
 
 namespace Nwesp.Maui.Android
 {
@@ -75,50 +76,40 @@ namespace Nwesp.Maui.Android
 
         public override void SetVirtualView(IView view)
         {
-            if(view is not ContentView contentView)
+            if (view is ITextInputLayout layout)
             {
-                return;
+                // Setting some default values in the virtual view are not working properly.
+                layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity();
             }
 
-            if(view is ITextInputLayout layout)
-            {
-                // Setting some default values in the Maui component is not working properly.
-                layout.DisabledHintOpacity = ThemeHelper.GetDisabledLabelTextOpacity();
-                if (layout.Content is IMaterialEntry materialEntry)
-                {
-                    materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
-                    VirtualEntry = materialEntry;
-                }
-            }
-            
-            PlatformEntry = contentView.Content.ToPlatform(MauiContext!) as EditText ?? throw IllegalContentException.ThrowTextInputLayoutIllegalContent();
-            base.SetVirtualView(view);
-            PlatformView.AddView(PlatformEntry);
-            PlatformView.TextInputLayoutTextChanged(VirtualView, PlatformEntry?.Text);
+            base.SetVirtualView(view); 
         }
 
         protected override void ConnectHandler(MauiTextInputLayout platformView)
         {
             base.ConnectHandler(platformView);
-
-            if (PlatformEntry is not null)
-            {
-                PlatformEntry.TextChanged += PlatformEntry_TextChanged;
-                PlatformEntry.FocusChange += PlatformEntry_FocusChange;
-            }
         }
         
         protected override void DisconnectHandler(MauiTextInputLayout platformView)
         {
             base.DisconnectHandler(platformView);
-            if (PlatformEntry is not null)
+            if (platformView.EditText is not null)
             {
-                PlatformEntry.TextChanged -= PlatformEntry_TextChanged;
-                PlatformEntry.FocusChange -= PlatformEntry_FocusChange;
+                platformView.EditText.TextChanged -= PlatformEntry_TextChanged;
+                platformView.EditText.FocusChange -= PlatformEntry_FocusChange;
             }
             platformView.SetEndIconOnClickListener(null);
             platformView.SetStartIconOnClickListener(null);
             platformView.SetErrorIconOnClickListener(null);
+        }
+
+        public void ConnectEventHandlers(MauiTextInputLayout platformView)
+        {
+            if(platformView.EditText is not null)
+            {
+                platformView.EditText.TextChanged += PlatformEntry_TextChanged;
+                platformView.EditText.FocusChange += PlatformEntry_FocusChange;
+            }
         }
 
         private void PlatformEntry_FocusChange(object? sender, AView.FocusChangeEventArgs e)
@@ -129,6 +120,27 @@ namespace Nwesp.Maui.Android
         private void PlatformEntry_TextChanged(object? sender, ATextChangedEventArgs e)
         {
             PlatformView?.TextInputLayoutTextChanged(VirtualView, e.Text?.ToString());
+        }
+        public static void MapContent(ITextInputLayoutHandler handler, ITextInputLayout view)
+        {
+            if(view.Content is null || view is not ContentView contentView)
+            {
+                return;
+            }
+
+            if (view is ITextInputLayout layout && layout.Content is IMaterialEntry materialEntry)
+            {
+                materialEntry.BoxBackgroundMode = layout.BoxBackgroundMode;
+            }
+            
+            handler.PlatformView.AddView(contentView.Content.ToPlatform(handler.MauiContext!));
+            
+            if(handler is TextInputLayoutHandler concreteHandler)
+            {
+                concreteHandler.ConnectEventHandlers(handler.PlatformView);
+            }
+
+            handler.PlatformView.TextInputLayoutTextChanged(view, handler.PlatformView.EditText?.Text);
         }
 
         public static void MapBackgroundColor(ITextInputLayoutHandler handler, ITextInputLayout view)

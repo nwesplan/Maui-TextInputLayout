@@ -21,8 +21,5 @@ namespace Nwesp.Maui.Android.Abstractions
     {
         new ITextInputLayout VirtualView { get; }
         new PlatformView PlatformView { get; }
-
-        IMaterialEntry VirtualEntry { get; set; }
-        PlatformEntry PlatformEntry { get; set; }
     }
 }
