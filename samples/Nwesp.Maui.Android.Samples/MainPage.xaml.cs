@@ -47,7 +47,7 @@ namespace Nwesp.Maui.Android.Samples
             });
 
             BindingContext = this;
-
+            
             vsl.Add(new TextInputLayout()
             {
                 BoxBackgroundMode = BoxBackgroundMode.Outline,

@@ -21,6 +21,7 @@ namespace Nwesp.Maui.Android.Hosting
                 config.AddHandler<TextInputLayout, TextInputLayoutHandler>();
                 config.AddHandler<MaterialEntry, MaterialEntryHandler>();
                 config.AddHandler<MaterialPicker, MaterialPickerHandler>();
+                config.AddHandler<MaterialDatePicker, MaterialDatePickerHandler>();
             });
          
 

@@ -5,7 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
     x:Name="this">
-    <VerticalStackLayout Padding="8" Spacing="10" x:Name="vsl">
+    <VerticalStackLayout
+        x:Name="vsl"
+        Padding="8"
+        Spacing="10">
         <Button
             Margin="4"
             Command="{Binding FilledCommand}"
@@ -26,8 +29,11 @@
         <input:TextInputLayout BoxBackgroundMode="Filled">
             <input:MaterialEntry />
         </input:TextInputLayout>
-        <input:TextInputLayout BoxBackgroundMode="Filled">
-            <input:MaterialEntry />
+        <input:TextInputLayout BoxBackgroundMode="Filled" Hint="Date">
+            <input:MaterialDatePicker />
+        </input:TextInputLayout>
+        <input:TextInputLayout BoxBackgroundMode="Outline" Hint="Date">
+            <input:MaterialDatePicker />
         </input:TextInputLayout>
     </VerticalStackLayout>
 </ContentPage>
