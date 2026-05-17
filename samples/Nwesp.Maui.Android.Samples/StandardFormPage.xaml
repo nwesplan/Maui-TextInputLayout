@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--  Based on sample images from https://m3.material.io/components/text-fields/guidelines  -->
+<base:BaseDemoPage
+    x:Class="Nwesp.Maui.Android.Samples.StandardFormPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Nwesp.Maui.Android.Samples"
+    xmlns:input="clr-namespace:Nwesp.Maui.Android.Controls;assembly=Nwesp.Maui.Android"
+    Title="StandardFormPage">
+    <base:BaseDemoPage.Resources>
+        <Thickness x:Key="ImageMargin">0, 6, 20, 0</Thickness>
+        <x:Int32 x:Key="ImageDimension">20</x:Int32>
+    </base:BaseDemoPage.Resources>
+    <ScrollView Padding="8">
+        <Grid
+            Margin="0,0,16,0"
+            ColumnDefinitions="Auto, *"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+            RowSpacing="16">
+
+            <!--  First Row  -->
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="{StaticResource ImageMargin}"
+                HeightRequest="{StaticResource ImageDimension}"
+                HorizontalOptions="Start"
+                Source="material_person.svg"
+                VerticalOptions="Start"
+                WidthRequest="{StaticResource ImageDimension}" />
+
+            <input:TextInputLayout
+                Grid.Row="0"
+                Grid.Column="1"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="First name">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Last name">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <Image
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="{StaticResource ImageMargin}"
+                HeightRequest="{StaticResource ImageDimension}"
+                HorizontalOptions="Start"
+                Source="material_phone.svg"
+                VerticalOptions="Start"
+                WidthRequest="{StaticResource ImageDimension}" />
+            <input:TextInputLayout
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Phone">
+                <input:MaterialEntry Keyboard="Telephone" />
+            </input:TextInputLayout>
+
+            <Image
+                Grid.Row="3"
+                Grid.Column="0"
+                Margin="{StaticResource ImageMargin}"
+                HeightRequest="{StaticResource ImageDimension}"
+                HorizontalOptions="Start"
+                Source="location_on.svg"
+                VerticalOptions="Start"
+                WidthRequest="{StaticResource ImageDimension}" />
+            <input:TextInputLayout
+                Grid.Row="3"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Address">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+
+            <input:TextInputLayout
+                Grid.Row="4"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="City">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <Grid
+                Grid.Row="5"
+                Grid.Column="1"
+                ColumnDefinitions="*, *"
+                ColumnSpacing="16">
+                <input:TextInputLayout
+                    Grid.Column="0"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    EndIcon="material_arrow_drop_down.svg"
+                    EndIconVisibilityMode="Always"
+                    Hint="State"
+                    IsHintAlwaysExpanded="True">
+                    <input:MaterialPicker Title="Select" TitleColor="{StaticResource md.comp.filled-text-field.input-text.color}" />
+                </input:TextInputLayout>
+                <input:TextInputLayout
+                    Grid.Column="1"
+                    BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                    Hint="Zip">
+                    <input:MaterialEntry Keyboard="Numeric" />
+                </input:TextInputLayout>
+            </Grid>
+            <Image
+                Grid.Row="6"
+                Grid.Column="0"
+                Margin="{StaticResource ImageMargin}"
+                HeightRequest="{StaticResource ImageDimension}"
+                HorizontalOptions="Start"
+                Source="material_mail.svg"
+                VerticalOptions="Start"
+                WidthRequest="{StaticResource ImageDimension}" />
+            <input:TextInputLayout
+                Grid.Row="6"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                Hint="Email">
+                <input:MaterialEntry />
+            </input:TextInputLayout>
+            <Image
+                Grid.Row="7"
+                Grid.Column="0"
+                Margin="{StaticResource ImageMargin}"
+                HeightRequest="{StaticResource ImageDimension}"
+                HorizontalOptions="Start"
+                Source="material_gift.svg"
+                VerticalOptions="Start"
+                WidthRequest="{StaticResource ImageDimension}" />
+            <input:TextInputLayout
+                Grid.Row="7"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                BoxBackgroundMode="{Binding BoxBackgroundMode}"
+                EndIcon="material_calendar_filled.svg"
+                EndIconVisibilityMode="Always"
+                Hint="Birthday">
+                <input:MaterialDatePicker Date="{x:Null}" />
+            </input:TextInputLayout>
+        </Grid>
+    </ScrollView>
+</base:BaseDemoPage>

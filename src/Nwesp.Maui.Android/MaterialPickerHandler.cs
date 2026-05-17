@@ -22,6 +22,7 @@ namespace Nwesp.Maui.Android
             picker.FocusableInTouchMode = false;
             picker.InputType = InputTypes.Null;
             picker.ShowSoftInputOnFocus = false;
+            
             return picker;
         }
 

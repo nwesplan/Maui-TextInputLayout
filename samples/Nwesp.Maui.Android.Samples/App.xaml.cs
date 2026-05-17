@@ -31,6 +31,7 @@ namespace Nwesp.Maui.Android.Samples
             RegisterRoute<EndIconClearTextPage>();
             RegisterRoute<StartIconPage>();
             RegisterRoute<ColorsPage>();
+            RegisterRoute<StandardFormPage>();
         }
         private static void RegisterRoute<T>()
         {

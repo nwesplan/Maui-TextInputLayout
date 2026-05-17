@@ -94,6 +94,9 @@
 	  <MauiXaml Update="ErrorAndCounterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="StandardFormPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="StartIconPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
